@@ -13,7 +13,8 @@ class Dashboard extends MY_Controller {
 		$section = $this->uri->segment_array();
 		array_shift($section);
 
-		$section = end($this->uri->segment_array());
+		$tmp = $this->uri->segment_array();
+		$section = end($tmp);
 		if ($section != 'login' && $section != 'submit'
 				&& $this->session->userdata('user_id') == false
 				) {
@@ -32,6 +33,8 @@ class Dashboard extends MY_Controller {
 	
 	public function login($submit = null)
 	{
+		// echo sha1('admin' . HASH_KEY);
+		// echo sha1('test' . HASH_KEY);
 		if ($submit == null) {
 			$this->load->view('dashboard/login', $this->data);
 			return true;
